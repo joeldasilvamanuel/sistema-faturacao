@@ -1,0 +1,64 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Popins", sans-serif;
+}
+
+body {
+  background: url("../images/bady-fundo.jpg") no-repeat center center fixed;
+  background-size: cover;
+  color: #333;
+  font-size: 16px;
+  overflow-x: hidden;
+}
+
+.login-container {
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 400px;
+  width: 700px;
+  margin: 100px auto;
+}
+
+h1 {
+  font-size: 70px;
+  text-align: center;
+  margin-left: -95px;
+  margin-right: 75px;
+  margin-bottom: 20px;
+  color: #27ae60;
+  border-bottom: 3px solid #27ae60;
+  padding-bottom: 10px;
+}
+
+form {
+  background: #f0f2f5;
+  display: flex;
+  flex-direction: column;
+  width: 350px;
+  gap: 15px;
+  padding: 50px;
+  margin-right: -100px;
+}
+
+input[type="text"],
+input[type="password"] {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+button {
+  background: #27ae60;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
