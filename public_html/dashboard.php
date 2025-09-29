@@ -6,7 +6,7 @@ iniciarSessao();
 
 // VERIFICAÇÃO DE AUTORIZAÇÃO: Se não estiver logado, volta para o login
 if (!isset($_SESSION['utilizador_id'])) {
-    header("Location: index.php"); 
+    header("Location: index.php");
     exit();
 }
 
@@ -48,7 +48,7 @@ $is_admin        = $_SESSION['is_admin'];
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="cadastrar_usuarios.php">
+                        <a href="cadastrar_utilizadores.php">
                             <i class="fas fa-user-plus"></i>
                             <span>Cadastrar Utilizadores</span>
                         </a>
