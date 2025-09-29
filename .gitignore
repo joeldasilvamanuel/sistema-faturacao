@@ -1,0 +1,19 @@
+# Ficheiros e pastas gerados pelo sistema
+/vendor/
+/node_modules/
+/log/
+*.log
+*.sql.backup
+
+# Ficheiros de IDE
+.idea/
+.vscode/
+
+# Ficheiros de Configuração Sensível (CRUCIAL para PHP)
+# Vamos ignorar o config.php para evitar que as suas credenciais
+# de base de dados sejam enviadas para o GitHub!
+inc/config.php
+
+# Ficheiros temporários e de cache
+*.tmp
+*.bak
