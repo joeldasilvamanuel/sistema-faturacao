@@ -2,6 +2,7 @@
 // Arquivo: supermercado-faturacao/public_html/dashboard.php
 
 require_once '../inc/funcoes.php';
+require_once '../inc/config.php'; // Inclui a conexão PDO
 iniciarSessao();
 
 // VERIFICAÇÃO DE AUTORIZAÇÃO: Se não estiver logado, volta para o login
@@ -10,10 +11,40 @@ if (!isset($_SESSION['utilizador_id'])) {
     exit();
 }
 
+// -------------------------------------------------------------
+// BUSCA DE DADOS REAIS DA BASE DE DADOS (KPIs)
+// -------------------------------------------------------------
+
 $nome_utilizador = $_SESSION['nome_utilizador'];
 $nome_role       = $_SESSION['nome_role'];
 $is_admin        = $_SESSION['is_admin'];
+
+// Variáveis que vão armazenar os dados dinâmicos
+$total_utilizadores = 0;
+$total_produtos_stock = 0;
+
+try {
+    $pdo = getConnection(); // Conecta à base de dados
+
+    // 1. Contar o total de utilizadores
+    $sql_users = "SELECT COUNT(id_utilizador) FROM utilizadores";
+    $stmt_users = $pdo->query($sql_users);
+    $total_utilizadores = $stmt_users->fetchColumn();
+
+    // 2. Contar o total de UNIDADES de produtos em stock (soma das quantidades)
+    $sql_stock = "SELECT COALESCE(SUM(stock), 0) FROM produtos";
+    $stmt_stock = $pdo->query($sql_stock);
+    $total_produtos_stock = $stmt_stock->fetchColumn();
+
+    // As métricas de Vendas e Receita ficarão estáticas até criarmos as tabelas de faturação
+
+} catch (PDOException $e) {
+    // Regista o erro para auditoria, mas mantém a página funcional
+    error_log("Erro ao carregar dados da Dashboard: " . $e->getMessage());
+}
+
 ?>
+
 
 
 
@@ -53,12 +84,24 @@ $is_admin        = $_SESSION['is_admin'];
                             <span>Cadastrar Utilizadores</span>
                         </a>
                     </li>
+                    <!-- <li class="nav-item">
+                        <a href="gerir_utilizadores.php">
+                            <i class="fas fa-user-cog"></i>
+                            <span>Gerir Utilizadores</span>
+                        </a>
+                    </li> -->
                     <li class="nav-item">
                         <a href="cadastrar_produtos.php">
                             <i class="fas fa-boxes"></i>
                             <span>Cadastrar Produtos</span>
                         </a>
                     </li>
+                    <!-- <li class="nav-item">
+                        <a href="gerir_produtos.php">
+                            <i class="fas fa-warehouse"></i>
+                            <span>Gerir Produtos</span>
+                        </a>
+                    </li> -->
                     <li class="nav-item">
                         <a href="relatorios.php">
                             <i class="fas fa-chart-bar"></i>
@@ -147,6 +190,7 @@ $is_admin        = $_SESSION['is_admin'];
                                 <span class="stat-change positive">+12%</span>
                             </div>
                         </div>
+
                         <div class="stat-card">
                             <div class="stat-icon">
                                 <i class="fas fa-dollar-sign"></i>
@@ -157,24 +201,26 @@ $is_admin        = $_SESSION['is_admin'];
                                 <span class="stat-change positive">+8%</span>
                             </div>
                         </div>
+
                         <div class="stat-card">
                             <div class="stat-icon">
                                 <i class="fas fa-box-open"></i>
                             </div>
                             <div class="stat-info">
-                                <h3>Produtos em Stock</h3>
-                                <span class="stat-value">1.847</span>
-                                <span class="stat-change negative">-5%</span>
+                                <h3>Total em Stock</h3>
+                                <span class="stat-value"><?php echo htmlspecialchars($total_produtos_stock); ?></span>
+                                <span class="stat-change info">Unidades</span>
                             </div>
                         </div>
+
                         <div class="stat-card">
                             <div class="stat-icon">
                                 <i class="fas fa-users"></i>
                             </div>
                             <div class="stat-info">
-                                <h3>Clientes Ativos</h3>
-                                <span class="stat-value">342</span>
-                                <span class="stat-change positive">+3%</span>
+                                <h3>Total de Utilizadores</h3>
+                                <span class="stat-value"><?php echo htmlspecialchars($total_utilizadores); ?></span>
+                                <span class="stat-change info">Registados</span>
                             </div>
                         </div>
                     </div>

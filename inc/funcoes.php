@@ -1,8 +1,7 @@
 <?php
 // Arquivo: supermercado-faturacao/inc/funcoes.php
 
-// O caminho 'config.php' é relativo à pasta 'inc/' onde este ficheiro está.
-require_once 'config.php'; // <--- ESTE CAMINHO DEVE ESTAR CORRETO
+require_once 'config.php';
 
 /**
  * Inicia a sessão se ainda não estiver ativa.

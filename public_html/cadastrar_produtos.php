@@ -23,6 +23,8 @@ unset($_SESSION['mensagem_sucesso'], $_SESSION['mensagem_erro']);
     <meta charset="UTF-8">
     <title>Cadastro de Produtos - Gestão de Supermercado</title>
     <link rel="stylesheet" href="css/style_of_cada_produtos.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 
 <body>
@@ -58,6 +60,46 @@ unset($_SESSION['mensagem_sucesso'], $_SESSION['mensagem_erro']);
         </form>
         <p><a href="dashboard.php">Voltar ao Painel</a></p>
     </div>
+
+    <!-- Botão flutuante Gerir Produtos -->
+    <a href="gerir_produtos.php" class="btn-float btn-products" title="Gerir Produtos">
+        <i class="fas fa-warehouse"></i>
+    </a>
+
+    <style>
+    .btn-float {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-size: 20px;
+        text-decoration: none;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        transition: 0.3s ease;
+        z-index: 9999;
+    }
+
+    .btn-float:hover {
+        transform: scale(1.1);
+    }
+
+    .btn-users {
+        background: #007bff;
+        bottom: 80px;
+        /* fica acima do botão de produtos */
+    }
+
+    .btn-products {
+        background: #28a745;
+    }
+    </style>
+
 </body>
 
 </html>
