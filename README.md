@@ -20,5 +20,3 @@ Foi desenvolvido com tecnologias de fácil implementação e manutenção.
 - Front-end: HTML5, CSS3, JavaScript
 - Back-end: PHP
 - Base de dados: MySQL / MariaDB
-
-## Estrutura
