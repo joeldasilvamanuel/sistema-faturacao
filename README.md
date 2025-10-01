@@ -1,4 +1,4 @@
-# Sistema de Faturação para Supermercado (Angola)
+# Sistema de Faturação de Supermercado
 
 Um sistema simples para gestão de faturas e stock em supermercados, adaptado às necessidades do mercado angolano.
 
